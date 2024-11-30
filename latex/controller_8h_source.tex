@@ -1,0 +1,495 @@
+\doxysection{controller.\+h}
+\hypertarget{controller_8h_source}{}\label{controller_8h_source}\mbox{\hyperlink{controller_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Controller.h}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ CONTROLLER\_H}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ CONTROLLER\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}model.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{/*\ FUNCIONES\ PREDECLARADAS\ */}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a2c018b07f320da4371811bb498b61a82}{seguridad}}();}
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a2a0e843767aeea4f433a28b9c54f573a}{menu}}();}
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a867f6fabc108b3a4c6f0dade802e3a8a}{bloqueo}}();}
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_ad9ee76c563085f0c7551b4f5af30adf8}{alarma}}();}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a310667cc50f973b5ea8f3dda40239571}{monitoreoAmbiental}}();}
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a304e93b3b720a71793e50ef1da42d219}{monitoreoEventos}}();}
+\DoxyCodeLine{00020\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_ada51648078c9cc3658c1de6f7d749367}{setLED}}(uint16\_t\ red,\ uint16\_t\ green,\ uint16\_t\ blue);}
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_ab2f96fd17b41e589cac3f1e765610906}{updateTimeoutInicioAFK}}();}
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_af8de14faad3d8faef888bd8ccc022e32}{startTimeoutInicioAFK}}();}
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a6a633372f449517f223b1b01bc693b04}{stopTimeoutInicioAFK}}();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//**************************\ MAQUINA\ DE\ ESTADOS\ \ ************************************}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a6e155fe6a2f68ed4bd8f7ea40a93b6f9}{onEnteringInicio}}();}
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a033836d33bae76acdee1d677a405163f}{onLeavingInicio}}();}
+\DoxyCodeLine{00031\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a3f8bb0d9145bc37b66b219fb1bdaa1b0}{onEnteringAlerta}}();}
+\DoxyCodeLine{00032\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a531fdd05fe86e02fa3ab176e00c13ce0}{onLeavingAlerta}}();}
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a3372d8721feb4a132e3575740c56ea9e}{onEnteringMAmbiental}}();}
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a2d762e42fd4e7f65072195ab9f168865}{onLeavingMAmbiental}}();}
+\DoxyCodeLine{00035\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a7caad812e04d332fcd60d7af203a3e5a}{onEnteringMEventos}}();}
+\DoxyCodeLine{00036\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_add1a1f5b6e958e270515142c3d1e96fc}{onLeavingMEventos}}();}
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_afa7a2fb2ee7d671d10f90111a3a4b0da}{onEnteringBloqueado}}();}
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a8bd1ef7f23da8df4d83c9c93c6310ef1}{onLeavingBloqueado}}();}
+\DoxyCodeLine{00039\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a4dfa604d9188f1ac7ea0cbbf09c82f5c}{onEnteringAlarma}}();}
+\DoxyCodeLine{00040\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_af79dd95a9a9e4d8a176fd89de2b57445}{onLeavingAlarma}}();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keywordtype}{boolean}\ compareAndResetInput(Input\ inputIn);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ StateMachine\ stateMachine(6,\ 11);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keywordtype}{void}\ setupStateMachine()\ \{}
+\DoxyCodeLine{00047\ \ \ \textcolor{comment}{//\ Inicio}}
+\DoxyCodeLine{00048\ \ \ stateMachine.AddTransition(Inicio,\ MonitoreoAmbiental,\ []()\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{return}\ compareAndResetInput(Input::ClaveCorrecta);}
+\DoxyCodeLine{00050\ \ \ \});}
+\DoxyCodeLine{00051\ \ \ stateMachine.AddTransition(Inicio,\ Bloqueado,\ []()\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return}\ compareAndResetInput(Input::BloqueoSistema);}
+\DoxyCodeLine{00053\ \ \ \});}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{comment}{//\ Alerta}}
+\DoxyCodeLine{00056\ \ \ stateMachine.AddTransition(Alerta,\ Alarma,\ []()\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{return}\ compareAndResetInput(Umbral);}
+\DoxyCodeLine{00058\ \ \ \});}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \textcolor{comment}{//Monitoreo\ Ambiental}}
+\DoxyCodeLine{00061\ \ \ \textcolor{comment}{//\ stateMachine.AddTransition(MonitoreoAmbiental,\ Alerta,\ []()\ \{}}
+\DoxyCodeLine{00062\ \ \ \textcolor{comment}{//\ \ \ return\ compareAndResetInput(Cambio);}}
+\DoxyCodeLine{00063\ \ \ \textcolor{comment}{//\ \});}}
+\DoxyCodeLine{00064\ \ \ stateMachine.AddTransition(MonitoreoAmbiental,\ Alarma,\ []()\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ compareAndResetInput(Umbral);}
+\DoxyCodeLine{00066\ \ \ \});}
+\DoxyCodeLine{00067\ \ \ stateMachine.AddTransition(MonitoreoAmbiental,\ MonitoreoEventos,\ []()\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{return}\ compareAndResetInput(Timeout);}
+\DoxyCodeLine{00069\ \ \ \});}
+\DoxyCodeLine{00070\ \ \ stateMachine.AddTransition(MonitoreoAmbiental,\ Alerta,\ []()\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{return}\ compareAndResetInput(Cambio);}
+\DoxyCodeLine{00072\ \ \ \});}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \textcolor{comment}{//\ Bloqueado}}
+\DoxyCodeLine{00075\ \ \ stateMachine.AddTransition(Bloqueado,\ Inicio,\ []()\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{return}\ compareAndResetInput(Timeout);}
+\DoxyCodeLine{00077\ \ \ \});}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \textcolor{comment}{//Monitoreo\ Eventos}}
+\DoxyCodeLine{00080\ \ \ stateMachine.AddTransition(MonitoreoEventos,\ Alerta,\ []()\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{return}\ compareAndResetInput(Cambio);}
+\DoxyCodeLine{00082\ \ \ \});}
+\DoxyCodeLine{00083\ \ \ stateMachine.AddTransition(Alerta,\ MonitoreoEventos,\ []()\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{return}\ compareAndResetInput(Timeout);}
+\DoxyCodeLine{00085\ \ \ \});}
+\DoxyCodeLine{00086\ \ \ stateMachine.AddTransition(MonitoreoEventos,\ MonitoreoAmbiental,\ []()\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{return}\ compareAndResetInput(Timeout);}
+\DoxyCodeLine{00088\ \ \ \});}
+\DoxyCodeLine{00089\ \ \ stateMachine.AddTransition(Alarma,\ Inicio,\ []()\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{return}\ compareAndResetInput(Cambio);}
+\DoxyCodeLine{00091\ \ \ \});}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ stateMachine.SetOnEntering(Inicio,\ \mbox{\hyperlink{controller_8h_a6e155fe6a2f68ed4bd8f7ea40a93b6f9}{onEnteringInicio}});}
+\DoxyCodeLine{00094\ \ \ stateMachine.SetOnEntering(Alerta,\ \mbox{\hyperlink{controller_8h_a3f8bb0d9145bc37b66b219fb1bdaa1b0}{onEnteringAlerta}});}
+\DoxyCodeLine{00095\ \ \ stateMachine.SetOnEntering(MonitoreoAmbiental,\ \mbox{\hyperlink{controller_8h_a3372d8721feb4a132e3575740c56ea9e}{onEnteringMAmbiental}});}
+\DoxyCodeLine{00096\ \ \ stateMachine.SetOnEntering(Bloqueado,\ \mbox{\hyperlink{controller_8h_afa7a2fb2ee7d671d10f90111a3a4b0da}{onEnteringBloqueado}});}
+\DoxyCodeLine{00097\ \ \ stateMachine.SetOnEntering(MonitoreoEventos,\ \mbox{\hyperlink{controller_8h_a7caad812e04d332fcd60d7af203a3e5a}{onEnteringMEventos}});}
+\DoxyCodeLine{00098\ \ \ stateMachine.SetOnEntering(Alarma,\ \mbox{\hyperlink{controller_8h_a4dfa604d9188f1ac7ea0cbbf09c82f5c}{onEnteringAlarma}});}
+\DoxyCodeLine{00099\ \ \ stateMachine.SetOnLeaving(Inicio,\ \mbox{\hyperlink{controller_8h_a033836d33bae76acdee1d677a405163f}{onLeavingInicio}});}
+\DoxyCodeLine{00100\ \ \ stateMachine.SetOnLeaving(Alerta,\ \mbox{\hyperlink{controller_8h_a531fdd05fe86e02fa3ab176e00c13ce0}{onLeavingAlerta}});}
+\DoxyCodeLine{00101\ \ \ stateMachine.SetOnLeaving(MonitoreoAmbiental,\ \mbox{\hyperlink{controller_8h_a2d762e42fd4e7f65072195ab9f168865}{onLeavingMAmbiental}});}
+\DoxyCodeLine{00102\ \ \ stateMachine.SetOnLeaving(Bloqueado,\ \mbox{\hyperlink{controller_8h_a8bd1ef7f23da8df4d83c9c93c6310ef1}{onLeavingBloqueado}});}
+\DoxyCodeLine{00103\ \ \ stateMachine.SetOnLeaving(MonitoreoEventos,\ \mbox{\hyperlink{controller_8h_add1a1f5b6e958e270515142c3d1e96fc}{onLeavingMEventos}});}
+\DoxyCodeLine{00104\ \ \ stateMachine.SetOnLeaving(Alarma,\ \mbox{\hyperlink{controller_8h_af79dd95a9a9e4d8a176fd89de2b57445}{onLeavingAlarma}});}
+\DoxyCodeLine{00105\ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{comment}{//\ INPUT\ FUNCTION}}
+\DoxyCodeLine{00108\ \textcolor{keywordtype}{boolean}\ compareAndResetInput(Input\ inputIn)\ \{}
+\DoxyCodeLine{00109\ \ \ \textcolor{keywordflow}{if}\ (input\ ==\ inputIn)\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ input\ =\ Unknown;}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00112\ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00114\ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{comment}{//\ ***********************\ \ PANTALLA\ ********************************}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{keywordtype}{void}\ blankFunction()\ \{}
+\DoxyCodeLine{00124\ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00125\ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ LiquidScreen\ scrn\_Alerta;}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ LiquidLine\ status\_tmp\_m(0,\ 0,\ \textcolor{stringliteral}{"{}Luz:"{}},\ L);}
+\DoxyCodeLine{00131\ LiquidLine\ status\_hum\_m(8,\ 0,\ \textcolor{stringliteral}{"{}Hum:"{}},\ H,\ \textcolor{stringliteral}{"{}\%"{}});}
+\DoxyCodeLine{00132\ LiquidLine\ status\_luz\_m(0,\ 1,\ \textcolor{stringliteral}{"{}Temp:"{}},\ T,\ \textcolor{stringliteral}{"{}C"{}});}
+\DoxyCodeLine{00133\ LiquidScreen\ scrn\_monitoreo\_ambiental(status\_tmp\_m,\ status\_hum\_m,\ status\_luz\_m);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ LiquidLine\ status\_hall\_m(0,\ 0,\ \textcolor{stringliteral}{"{}Hall:"{}},\ HALL);}
+\DoxyCodeLine{00136\ LiquidLine\ status\_if\_m(0,\ 1,\ \textcolor{stringliteral}{"{}If:\ "{}},\ IR\_SENSOR);}
+\DoxyCodeLine{00137\ LiquidScreen\ scrn\_monitoreo\_eventos(status\_hall\_m,\ status\_if\_m);}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ LiquidLine\ line\_alarma(0,\ 0,\ \textcolor{stringliteral}{"{}Precaucion"{}});}
+\DoxyCodeLine{00140\ LiquidLine\ status\_alarma(0,\ 1,\ messageAlarma);}
+\DoxyCodeLine{00141\ LiquidScreen\ scrn\_alarma(line\_alarma,\ status\_alarma);}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ LiquidLine\ line\_alerta(0,\ 0,\ \textcolor{stringliteral}{"{}Precaucion"{}});}
+\DoxyCodeLine{00144\ LiquidLine\ status\_alerta(0,\ 1,\ messageAlerta);}
+\DoxyCodeLine{00145\ LiquidScreen\ scrn\_alerta(line\_alerta,\ status\_alerta);}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ LiquidMenu\ mainMenu(lcd);}
+\DoxyCodeLine{00153\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a4c8aff720db898c3dc82feb6481067c5}{setupLiquidMenu}}()\ \{}
+\DoxyCodeLine{00154\ \ \ scrn\_Alerta.set\_displayLineCount(2);}
+\DoxyCodeLine{00155\ \ \ mainMenu.add\_screen(scrn\_Alerta);}
+\DoxyCodeLine{00156\ \ \ mainMenu.add\_screen(scrn\_monitoreo\_eventos);}
+\DoxyCodeLine{00157\ \ \ mainMenu.add\_screen(scrn\_monitoreo\_ambiental);}
+\DoxyCodeLine{00158\ \ \ mainMenu.add\_screen(scrn\_alarma);}
+\DoxyCodeLine{00159\ \ \ mainMenu.add\_screen(scrn\_alerta);}
+\DoxyCodeLine{00160\ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{comment}{//\ ********************\ TASK\ TAREAS\ ***********************************}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a5f7357072c717da529f2fd7084cc3dd0}{controlTemperatura}}();}
+\DoxyCodeLine{00169\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a9c3ea79d8cc85be8af63717123d71143}{controlHumedad}}();}
+\DoxyCodeLine{00170\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a959ddecdcd9553e1d28618ad7d9e3312}{controlLuz}}();}
+\DoxyCodeLine{00171\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a9cd0f9ab2a6d5b3bd06d6140aa829a1d}{controlHall}}();}
+\DoxyCodeLine{00172\ \textcolor{keywordtype}{void}\ controlIRSensor();}
+\DoxyCodeLine{00173\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a72584877eb33caa4953ca9997ff64abc}{onSeguridadAFK}}();}
+\DoxyCodeLine{00174\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_ad862998466057175c32fa0007c760390}{inputTimeout}}();}
+\DoxyCodeLine{00175\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_add92fe5f33c4d60f4d096e30d98efa4b}{onUpdateMenu}}();}
+\DoxyCodeLine{00176\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_abb1e84c09dc1f763e7b62317c37d8fa4}{alertAlarm}}();}
+\DoxyCodeLine{00177\ \textcolor{keywordtype}{void}\ comeBack();}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ AsyncTask\ taskUpdateMenu(1000,\ \textcolor{keyword}{true},\ \mbox{\hyperlink{controller_8h_add92fe5f33c4d60f4d096e30d98efa4b}{onUpdateMenu}});}
+\DoxyCodeLine{00180\ AsyncTask\ taskTemperatura(1000,\ \textcolor{keyword}{true},\ \mbox{\hyperlink{controller_8h_a5f7357072c717da529f2fd7084cc3dd0}{controlTemperatura}});}
+\DoxyCodeLine{00181\ AsyncTask\ taskHumedad(1000,\ \textcolor{keyword}{true},\ \mbox{\hyperlink{controller_8h_a9c3ea79d8cc85be8af63717123d71143}{controlHumedad}});}
+\DoxyCodeLine{00182\ AsyncTask\ taskLuz(500,\ \textcolor{keyword}{true},\ \mbox{\hyperlink{controller_8h_a959ddecdcd9553e1d28618ad7d9e3312}{controlLuz}});}
+\DoxyCodeLine{00183\ AsyncTask\ taskHall(500,\ \textcolor{keyword}{true},\ \mbox{\hyperlink{controller_8h_a9cd0f9ab2a6d5b3bd06d6140aa829a1d}{controlHall}});}
+\DoxyCodeLine{00184\ AsyncTask\ taskIRSensor(500,\ \textcolor{keyword}{true},\ controlIRSensor);}
+\DoxyCodeLine{00185\ AsyncTask\ taskTimeoutEventos(3000,\ \textcolor{keyword}{false},\ \mbox{\hyperlink{controller_8h_ad862998466057175c32fa0007c760390}{inputTimeout}});}
+\DoxyCodeLine{00186\ AsyncTask\ taskTimeoutAmbiental(7000,\ \textcolor{keyword}{false},\ \mbox{\hyperlink{controller_8h_ad862998466057175c32fa0007c760390}{inputTimeout}});}
+\DoxyCodeLine{00187\ AsyncTask\ taskTimeoutAlarma(4000,\ \textcolor{keyword}{false},\ \mbox{\hyperlink{controller_8h_ad862998466057175c32fa0007c760390}{inputTimeout}});}
+\DoxyCodeLine{00188\ AsyncTask\ taskTimeoutAlerta(3000,\ \textcolor{keyword}{false},\ \mbox{\hyperlink{controller_8h_ad862998466057175c32fa0007c760390}{inputTimeout}});}
+\DoxyCodeLine{00189\ AsyncTask\ taskTimeoutInicioAFK(2000,\ \textcolor{keyword}{false},\ \mbox{\hyperlink{controller_8h_a72584877eb33caa4953ca9997ff64abc}{onSeguridadAFK}});}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00197\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a5f7357072c717da529f2fd7084cc3dd0}{controlTemperatura}}()\ \{}
+\DoxyCodeLine{00198\ \ \ T\ =\ dht.readTemperature();}
+\DoxyCodeLine{00199\ \ \ \textcolor{keywordflow}{if}\ (T\ >\ tmp\_high)\ \{}
+\DoxyCodeLine{00200\ \ \ \ \ strcpy(messageAlarma,\ \textcolor{stringliteral}{"{}'Ta\ Caliente"{}});}
+\DoxyCodeLine{00201\ \ \ \ \ input\ =\ Input::Umbral;}
+\DoxyCodeLine{00202\ \ \ \}}
+\DoxyCodeLine{00203\ \}}
+\DoxyCodeLine{00207\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a9c3ea79d8cc85be8af63717123d71143}{controlHumedad}}()\ \{}
+\DoxyCodeLine{00208\ \ \ H\ =\ dht.readHumidity();}
+\DoxyCodeLine{00209\ \}}
+\DoxyCodeLine{00215\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a959ddecdcd9553e1d28618ad7d9e3312}{controlLuz}}()\ \{}
+\DoxyCodeLine{00216\ \ \ L\ =\ analogRead(PHOTOCELL\_PIN);}
+\DoxyCodeLine{00217\ \ \ \textcolor{keywordflow}{if}\ (L\ >\ luz\_high)\ \{}
+\DoxyCodeLine{00218\ \ \ \ \ strcpy(messageAlarma,\ \textcolor{stringliteral}{"{}'Ta\ Oscuro"{}});}
+\DoxyCodeLine{00219\ \ \ \ \ input\ =\ Input::Umbral;}
+\DoxyCodeLine{00220\ \ \ \}}
+\DoxyCodeLine{00221\ \}}
+\DoxyCodeLine{00227\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a9cd0f9ab2a6d5b3bd06d6140aa829a1d}{controlHall}}()\ \{}
+\DoxyCodeLine{00228\ \ \ HALL\ =\ digitalRead(HALL\_PIN);}
+\DoxyCodeLine{00229\ \ \ \textcolor{keywordflow}{if}\ (HALL\ >\ hall\_high)\ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \mbox{\hyperlink{controller_8h_abb1e84c09dc1f763e7b62317c37d8fa4}{alertAlarm}}();}
+\DoxyCodeLine{00231\ \ \ \ \ strcpy(messageAlerta,\ \textcolor{stringliteral}{"{}iman\ Detectado"{}});}
+\DoxyCodeLine{00232\ \ \ \ \ \mbox{\hyperlink{controller_8h_ada51648078c9cc3658c1de6f7d749367}{setLED}}(0,\ 0,\ 1);\ \textcolor{comment}{//\ Encender\ LED\ Azul}}
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{comment}{//\ input\ =\ Input::Cambio;}}
+\DoxyCodeLine{00234\ \ \ \}}
+\DoxyCodeLine{00235\ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00243\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{controller_8h_a5b909254a0e0b643b48641dc71055460}{motionDetected}}\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Variable\ para\ controlar\ la\ detección\ de\ movimiento}}
+\DoxyCodeLine{00244\ \textcolor{keywordtype}{void}\ controlIRSensor()\ \{}
+\DoxyCodeLine{00245\ \ \ IR\_SENSOR\ =\ digitalRead(SENSOR\_PIN);}
+\DoxyCodeLine{00246\ \ \ \textcolor{keywordflow}{if}\ (IR\_SENSOR\ >\ ir\_low\ \&\&\ !\mbox{\hyperlink{controller_8h_a5b909254a0e0b643b48641dc71055460}{motionDetected}})\ \{\ \textcolor{comment}{//\ Solo\ si\ no\ hay\ detección\ previa}}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordflow}{if}\ (alert\_attempts\ >=\ 0)\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ -\/-\/alert\_attempts;}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Intentos\ restantes:\ "{}});}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ Serial.println(alert\_attempts);}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ strcpy(messageAlerta,\ \textcolor{stringliteral}{"{}Algo\ Detectado"{}});}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ input\ =\ Input::Cambio;}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \mbox{\hyperlink{controller_8h_ada51648078c9cc3658c1de6f7d749367}{setLED}}(0,\ 0,\ 1);\ \textcolor{comment}{//\ Encender\ LED\ Azul}}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \mbox{\hyperlink{controller_8h_a5b909254a0e0b643b48641dc71055460}{motionDetected}}\ =\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ Marcar\ que\ se\ ha\ detectado\ movimiento}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \textcolor{comment}{//\ Reiniciar\ la\ detección\ después\ de\ un\ tiempo}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \ \ \ \ delay(3000);\ \textcolor{comment}{//\ Espera\ 3\ segundos\ antes\ de\ permitir\ otra\ detección}}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \mbox{\hyperlink{controller_8h_a5b909254a0e0b643b48641dc71055460}{motionDetected}}\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Reiniciar\ la\ detección}}
+\DoxyCodeLine{00259\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ input\ =\ Umbral;\ \textcolor{comment}{//\ Activar\ estado\ de\ Alarma}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ strcpy(messageAlerta,\ \textcolor{stringliteral}{"{}Algo\ Detectado"{}});}
+\DoxyCodeLine{00262\ \ \ \ \ \}}
+\DoxyCodeLine{00263\ \ \ \}}
+\DoxyCodeLine{00264\ \}}
+\DoxyCodeLine{00272\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a72584877eb33caa4953ca9997ff64abc}{onSeguridadAFK}}()\ \{}
+\DoxyCodeLine{00273\ \ \ -\/-\/password\_attempts;\ \textcolor{comment}{//\ Reducir\ los\ intentos}}
+\DoxyCodeLine{00274\ \ \ \mbox{\hyperlink{controller_8h_ada51648078c9cc3658c1de6f7d749367}{setLED}}(1,\ 1,\ 0);\ \textcolor{comment}{//\ LED\ amarillo\ para\ error}}
+\DoxyCodeLine{00275\ \ \ lcd.clear();}
+\DoxyCodeLine{00276\ \ \ lcd.print(\textcolor{stringliteral}{"{}Tiempo\ agotado"{}});}
+\DoxyCodeLine{00277\ \ \ delay(1000);}
+\DoxyCodeLine{00278\ \ \ \mbox{\hyperlink{controller_8h_ada51648078c9cc3658c1de6f7d749367}{setLED}}(0,\ 0,\ 0);}
+\DoxyCodeLine{00279\ \ \ lcd.clear();}
+\DoxyCodeLine{00280\ \ \ lcd.print(\textcolor{stringliteral}{"{}Clave:\ "{}});}
+\DoxyCodeLine{00281\ \ \ keypadBuffer.clear();\ \textcolor{comment}{//\ Reiniciar\ el\ buffer}}
+\DoxyCodeLine{00282\ \ \ input\ =\ Unknown;\ \textcolor{comment}{//\ Reiniciar\ el\ estado\ de\ entrada}}
+\DoxyCodeLine{00283\ \}}
+\DoxyCodeLine{00289\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_abb1e84c09dc1f763e7b62317c37d8fa4}{alertAlarm}}()\ \{}
+\DoxyCodeLine{00290\ \ \ \textcolor{keywordflow}{if}\ (alert\_attempts\ >\ 0)\ \{}
+\DoxyCodeLine{00291\ \ \ \ \ -\/-\/alert\_attempts;}
+\DoxyCodeLine{00292\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Intentos\ restantes:\ "{}});}
+\DoxyCodeLine{00293\ \ \ \ \ Serial.println(alert\_attempts);}
+\DoxyCodeLine{00294\ \ \ \ \ input\ =\ Input::Cambio;}
+\DoxyCodeLine{00295\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00296\ \ \ \ \ input\ =\ Umbral;\ \textcolor{comment}{//\ Activar\ estado\ de\ Alarma}}
+\DoxyCodeLine{00297\ \ \ \}}
+\DoxyCodeLine{00298\ \}}
+\DoxyCodeLine{00304\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_ad862998466057175c32fa0007c760390}{inputTimeout}}()\ \{}
+\DoxyCodeLine{00305\ \ \ input\ =\ Timeout;}
+\DoxyCodeLine{00306\ \}}
+\DoxyCodeLine{00312\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_add92fe5f33c4d60f4d096e30d98efa4b}{onUpdateMenu}}()\ \{}
+\DoxyCodeLine{00313\ \ \ mainMenu.update();}
+\DoxyCodeLine{00314\ \}}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00326\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a2c018b07f320da4371811bb498b61a82}{seguridad}}()\ \{}
+\DoxyCodeLine{00327\ \ \ \mbox{\hyperlink{controller_8h_ab2f96fd17b41e589cac3f1e765610906}{updateTimeoutInicioAFK}}();\ \textcolor{comment}{//\ Actualiza\ la\ lógica\ del\ temporizador}}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \ \ \textcolor{keywordflow}{if}\ (password\_attempts\ ==\ 0)\ \{}
+\DoxyCodeLine{00330\ \ \ \ \ input\ =\ BloqueoSistema;}
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00332\ \ \ \}}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ key\ =\ customKeypad.getKey();}
+\DoxyCodeLine{00335\ \ \ \textcolor{keywordflow}{if}\ (!key)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \ \ \textcolor{keywordflow}{if}\ (key\ !=\ \textcolor{charliteral}{'A'})\ \{}
+\DoxyCodeLine{00338\ \ \ \ \ keypadBuffer.push(key);}
+\DoxyCodeLine{00339\ \ \ \ \ lcd.print(\textcolor{charliteral}{'*'});}
+\DoxyCodeLine{00340\ \ \ \ \ \mbox{\hyperlink{controller_8h_af8de14faad3d8faef888bd8ccc022e32}{startTimeoutInicioAFK}}();\ \textcolor{comment}{//\ Reiniciar\ el\ temporizador}}
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keywordflow}{if}\ (!keypadBuffer.isFull())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00342\ \ \ \}}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \textcolor{keywordflow}{if}\ (keypadBuffer.len\ ==\ password\_len\ \&\&\ strncmp(password,\ keypadBuffer.str,\ password\_len)\ ==\ 0)\ \{}
+\DoxyCodeLine{00345\ \ \ \ \ \mbox{\hyperlink{controller_8h_ada51648078c9cc3658c1de6f7d749367}{setLED}}(0,\ 1,\ 0);}
+\DoxyCodeLine{00346\ \ \ \ \ lcd.clear();}
+\DoxyCodeLine{00347\ \ \ \ \ lcd.print(\textcolor{stringliteral}{"{}Correcto"{}});}
+\DoxyCodeLine{00348\ \ \ \ \ input\ =\ ClaveCorrecta;}
+\DoxyCodeLine{00349\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00350\ \ \ \ \ -\/-\/password\_attempts;}
+\DoxyCodeLine{00351\ \ \ \ \ \mbox{\hyperlink{controller_8h_ada51648078c9cc3658c1de6f7d749367}{setLED}}(0,\ 0,\ 1);}
+\DoxyCodeLine{00352\ \ \ \ \ lcd.clear();}
+\DoxyCodeLine{00353\ \ \ \ \ lcd.print(\textcolor{stringliteral}{"{}Incorrecto"{}});}
+\DoxyCodeLine{00354\ \ \ \}}
+\DoxyCodeLine{00355\ \ \ \mbox{\hyperlink{controller_8h_a6a633372f449517f223b1b01bc693b04}{stopTimeoutInicioAFK}}();}
+\DoxyCodeLine{00356\ \ \ delay(1000);}
+\DoxyCodeLine{00357\ \ \ \mbox{\hyperlink{controller_8h_ada51648078c9cc3658c1de6f7d749367}{setLED}}(0,\ 0,\ 0);}
+\DoxyCodeLine{00358\ \ \ lcd.clear();}
+\DoxyCodeLine{00359\ \ \ lcd.print(\textcolor{stringliteral}{"{}Clave:\ "{}});}
+\DoxyCodeLine{00360\ \ \ keypadBuffer.clear();}
+\DoxyCodeLine{00361\ \}}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00368\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a867f6fabc108b3a4c6f0dade802e3a8a}{bloqueo}}()\ \{}
+\DoxyCodeLine{00369\ \ \ \mbox{\hyperlink{controller_8h_ada51648078c9cc3658c1de6f7d749367}{setLED}}(1,\ 0,\ 0);}
+\DoxyCodeLine{00370\ \ \ lcd.setCursor(0,\ 0);}
+\DoxyCodeLine{00371\ \ \ lcd.print(\textcolor{stringliteral}{"{}Sistema\ "{}});}
+\DoxyCodeLine{00372\ \ \ lcd.setCursor(0,\ 1);}
+\DoxyCodeLine{00373\ \ \ lcd.print(\textcolor{stringliteral}{"{}Bloqueado"{}});}
+\DoxyCodeLine{00374\ \ \ execute\_melody(melodyBloqueo);}
+\DoxyCodeLine{00375\ \ \ lcd.clear();}
+\DoxyCodeLine{00376\ \ \ input\ =\ Input::Timeout;}
+\DoxyCodeLine{00377\ \}}
+\DoxyCodeLine{00383\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_ad9ee76c563085f0c7551b4f5af30adf8}{alarma}}()\ \{}
+\DoxyCodeLine{00384\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ key\ =\ customKeypad.getKey();}
+\DoxyCodeLine{00385\ \ \ taskTimeoutAlarma.Update();}
+\DoxyCodeLine{00386\ \ \ taskTemperatura.Update();}
+\DoxyCodeLine{00387\ \ \ taskHumedad.Update();}
+\DoxyCodeLine{00388\ \ \ taskLuz.Update();}
+\DoxyCodeLine{00389\ \ \ taskHall.Update();}
+\DoxyCodeLine{00390\ \ \ taskIRSensor.Update();}
+\DoxyCodeLine{00391\ \ \ \textcolor{keywordflow}{if}\ (key\ ==\ \textcolor{charliteral}{'*'})\ input\ =\ Input::Cambio;}
+\DoxyCodeLine{00392\ \}}
+\DoxyCodeLine{00398\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a2a0e843767aeea4f433a28b9c54f573a}{menu}}()\ \{}
+\DoxyCodeLine{00399\ \ \ taskTimeoutAlerta.Update();}
+\DoxyCodeLine{00400\ \ \ taskTimeoutAlarma.Update();}
+\DoxyCodeLine{00401\ \ \ taskHumedad.Update();}
+\DoxyCodeLine{00402\ \ \ taskLuz.Update();}
+\DoxyCodeLine{00403\ \ \ taskHall.Update();}
+\DoxyCodeLine{00404\ \ \ taskIRSensor.Update();}
+\DoxyCodeLine{00405\ \}}
+\DoxyCodeLine{00411\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a310667cc50f973b5ea8f3dda40239571}{monitoreoAmbiental}}()\ \{}
+\DoxyCodeLine{00412\ \ \ taskTemperatura.Update();}
+\DoxyCodeLine{00413\ \ \ taskHumedad.Update();}
+\DoxyCodeLine{00414\ \ \ taskLuz.Update();}
+\DoxyCodeLine{00415\ \ \ taskHall.Update();}
+\DoxyCodeLine{00416\ \ \ taskIRSensor.Update();\ \textcolor{comment}{//\ Llamar\ a\ la\ función\ del\ sensor\ infrarrojo}}
+\DoxyCodeLine{00417\ \ \ taskTimeoutAmbiental.Update();}
+\DoxyCodeLine{00418\ \}}
+\DoxyCodeLine{00424\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a304e93b3b720a71793e50ef1da42d219}{monitoreoEventos}}()\ \{}
+\DoxyCodeLine{00425\ \ \ taskTemperatura.Update();}
+\DoxyCodeLine{00426\ \ \ taskHumedad.Update();}
+\DoxyCodeLine{00427\ \ \ taskLuz.Update();}
+\DoxyCodeLine{00428\ \ \ taskHall.Update();}
+\DoxyCodeLine{00429\ \ \ taskIRSensor.Update();}
+\DoxyCodeLine{00430\ \ \ taskTimeoutEventos.Update();}
+\DoxyCodeLine{00431\ \ \ taskUpdateMenu.Update();}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00433\ \}}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00435\ }
+\DoxyCodeLine{00436\ \textcolor{comment}{//\ ***************\ MAQUINA\ DE\ ESTADOS\ *****************************}}
+\DoxyCodeLine{00437\ \textcolor{comment}{//\ **************ENTERING/LEAVING\ FUNCTIONS*********}}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \ \ \textcolor{comment}{//\ ENTERING/LEAVING\ FUNCTIONS}}
+\DoxyCodeLine{00445\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a6e155fe6a2f68ed4bd8f7ea40a93b6f9}{onEnteringInicio}}()\ \{}
+\DoxyCodeLine{00446\ \ \ alert\_attempts\ =\ 3;}
+\DoxyCodeLine{00447\ \ \ Serial.println(\textcolor{stringliteral}{"{}Entering\ Inicio"{}});}
+\DoxyCodeLine{00448\ \ \ keypadBuffer.clear();}
+\DoxyCodeLine{00449\ \ \ password\_attempts\ =\ PASSWORD\_ATTEMPTS;}
+\DoxyCodeLine{00450\ \ \ lcd.clear();}
+\DoxyCodeLine{00451\ \ \ lcd.setCursor(0,\ 0);}
+\DoxyCodeLine{00452\ \ \ lcd.print(\textcolor{stringliteral}{"{}Clave:\ "{}});}
+\DoxyCodeLine{00453\ \}}
+\DoxyCodeLine{00459\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a033836d33bae76acdee1d677a405163f}{onLeavingInicio}}()\ \{}
+\DoxyCodeLine{00460\ \ \ Serial.println(\textcolor{stringliteral}{"{}Leaving\ Inicio"{}});}
+\DoxyCodeLine{00461\ \ \ taskTimeoutInicioAFK.Stop();}
+\DoxyCodeLine{00462\ \}}
+\DoxyCodeLine{00468\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a3f8bb0d9145bc37b66b219fb1bdaa1b0}{onEnteringAlerta}}()\ \{}
+\DoxyCodeLine{00469\ \ \ Serial.println(\textcolor{stringliteral}{"{}Entering\ Alerta"{}});}
+\DoxyCodeLine{00470\ \ \ \mbox{\hyperlink{controller_8h_ada51648078c9cc3658c1de6f7d749367}{setLED}}(0,\ 0,\ 1);}
+\DoxyCodeLine{00471\ \ \ tone(buzzer,\ 1000,\ 5000);}
+\DoxyCodeLine{00472\ \ \ taskTemperatura.Start();}
+\DoxyCodeLine{00473\ \ \ taskHumedad.Start();}
+\DoxyCodeLine{00474\ \ \ taskLuz.Start();}
+\DoxyCodeLine{00475\ \ \ taskHall.Start();}
+\DoxyCodeLine{00476\ \ \ taskIRSensor.Start();\ \textcolor{comment}{//\ Iniciar\ la\ tarea\ del\ sensor\ infrarrojo}}
+\DoxyCodeLine{00477\ \ \ taskTimeoutAlerta.Start();}
+\DoxyCodeLine{00478\ \ \ mainMenu.change\_screen(\&scrn\_alerta);}
+\DoxyCodeLine{00479\ \ \ mainMenu.update();}
+\DoxyCodeLine{00480\ \}}
+\DoxyCodeLine{00486\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a531fdd05fe86e02fa3ab176e00c13ce0}{onLeavingAlerta}}()\ \{}
+\DoxyCodeLine{00487\ \ \ Serial.println(\textcolor{stringliteral}{"{}Leaving\ Alerta"{}});}
+\DoxyCodeLine{00488\ \ \ taskTemperatura.Stop();}
+\DoxyCodeLine{00489\ \ \ taskHumedad.Stop();}
+\DoxyCodeLine{00490\ \ \ taskLuz.Stop();}
+\DoxyCodeLine{00491\ \ \ taskHall.Stop();}
+\DoxyCodeLine{00492\ \ \ taskIRSensor.Stop();}
+\DoxyCodeLine{00493\ \ \ noTone(buzzer);}
+\DoxyCodeLine{00494\ \ \ taskTimeoutAlerta.Stop();}
+\DoxyCodeLine{00495\ \ \ \mbox{\hyperlink{controller_8h_ada51648078c9cc3658c1de6f7d749367}{setLED}}(0,\ 0,\ 0);}
+\DoxyCodeLine{00496\ \}}
+\DoxyCodeLine{00502\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a3372d8721feb4a132e3575740c56ea9e}{onEnteringMAmbiental}}()\ \{}
+\DoxyCodeLine{00503\ \ \ Serial.println(\textcolor{stringliteral}{"{}Entering\ Monitoreo\ Ambiental"{}});}
+\DoxyCodeLine{00504\ \ \ taskTemperatura.Start();}
+\DoxyCodeLine{00505\ \ \ taskHumedad.Start();}
+\DoxyCodeLine{00506\ \ \ taskLuz.Start();}
+\DoxyCodeLine{00507\ \ \ taskHall.Start();}
+\DoxyCodeLine{00508\ \ \ taskIRSensor.Start();}
+\DoxyCodeLine{00509\ \ \ taskTimeoutAmbiental.Start();}
+\DoxyCodeLine{00510\ \ \ taskUpdateMenu.Start();}
+\DoxyCodeLine{00511\ \ \ mainMenu.change\_screen(\&scrn\_monitoreo\_ambiental);}
+\DoxyCodeLine{00512\ \ \ mainMenu.update();}
+\DoxyCodeLine{00513\ \}}
+\DoxyCodeLine{00520\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a2d762e42fd4e7f65072195ab9f168865}{onLeavingMAmbiental}}()\ \{}
+\DoxyCodeLine{00521\ \ \ Serial.println(\textcolor{stringliteral}{"{}Leaving\ Monitoreo\ Ambiental"{}});}
+\DoxyCodeLine{00522\ \ \ taskTemperatura.Stop();}
+\DoxyCodeLine{00523\ \ \ taskHumedad.Stop();}
+\DoxyCodeLine{00524\ \ \ taskLuz.Stop();}
+\DoxyCodeLine{00525\ \ \ taskHall.Stop();}
+\DoxyCodeLine{00526\ \ \ taskIRSensor.Stop();}
+\DoxyCodeLine{00527\ \ \ taskTimeoutAmbiental.Stop();}
+\DoxyCodeLine{00528\ \ \ taskUpdateMenu.Stop();}
+\DoxyCodeLine{00529\ \}}
+\DoxyCodeLine{00535\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a7caad812e04d332fcd60d7af203a3e5a}{onEnteringMEventos}}()\ \{}
+\DoxyCodeLine{00536\ \ \ Serial.println(\textcolor{stringliteral}{"{}Entering\ Monitoreo\ Eventos"{}});}
+\DoxyCodeLine{00537\ \ \ taskTemperatura.Start();}
+\DoxyCodeLine{00538\ \ \ taskHumedad.Start();}
+\DoxyCodeLine{00539\ \ \ taskLuz.Start();}
+\DoxyCodeLine{00540\ \ \ taskHall.Start();}
+\DoxyCodeLine{00541\ \ \ taskIRSensor.Start();}
+\DoxyCodeLine{00542\ \ \ taskTimeoutEventos.Start();}
+\DoxyCodeLine{00543\ \ \ taskUpdateMenu.Start();}
+\DoxyCodeLine{00544\ \ \ mainMenu.change\_screen(\&scrn\_monitoreo\_eventos);}
+\DoxyCodeLine{00545\ \ \ mainMenu.update();}
+\DoxyCodeLine{00546\ \}}
+\DoxyCodeLine{00552\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_add1a1f5b6e958e270515142c3d1e96fc}{onLeavingMEventos}}()\ \{}
+\DoxyCodeLine{00553\ \ \ Serial.println(\textcolor{stringliteral}{"{}Leaving\ Monitoreo\ Eventos"{}});}
+\DoxyCodeLine{00554\ \ \ taskTemperatura.Stop();}
+\DoxyCodeLine{00555\ \ \ taskHumedad.Stop();}
+\DoxyCodeLine{00556\ \ \ taskLuz.Stop();}
+\DoxyCodeLine{00557\ \ \ taskHall.Stop();}
+\DoxyCodeLine{00558\ \ \ taskIRSensor.Stop();}
+\DoxyCodeLine{00559\ \ \ taskTimeoutEventos.Stop();}
+\DoxyCodeLine{00560\ \ \ taskUpdateMenu.Stop();}
+\DoxyCodeLine{00561\ \}}
+\DoxyCodeLine{00567\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_afa7a2fb2ee7d671d10f90111a3a4b0da}{onEnteringBloqueado}}()\ \{}
+\DoxyCodeLine{00568\ \ \ Serial.println(\textcolor{stringliteral}{"{}Entering\ Bloqueado"{}});}
+\DoxyCodeLine{00569\ \}}
+\DoxyCodeLine{00575\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a8bd1ef7f23da8df4d83c9c93c6310ef1}{onLeavingBloqueado}}()\ \{}
+\DoxyCodeLine{00576\ \ \ Serial.println(\textcolor{stringliteral}{"{}Leaving\ Bloqueado"{}});}
+\DoxyCodeLine{00577\ \ \ \mbox{\hyperlink{controller_8h_ada51648078c9cc3658c1de6f7d749367}{setLED}}(0,\ 0,\ 0);}
+\DoxyCodeLine{00578\ \}}
+\DoxyCodeLine{00585\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a4dfa604d9188f1ac7ea0cbbf09c82f5c}{onEnteringAlarma}}()\ \{}
+\DoxyCodeLine{00586\ \ \ Serial.println(\textcolor{stringliteral}{"{}Entering\ Alarma"{}});}
+\DoxyCodeLine{00587\ \ \ \mbox{\hyperlink{controller_8h_ada51648078c9cc3658c1de6f7d749367}{setLED}}(0,\ 0,\ 1);}
+\DoxyCodeLine{00588\ \ \ tone(buzzer,\ 97,\ 4000);}
+\DoxyCodeLine{00589\ \ \ taskTemperatura.Start();}
+\DoxyCodeLine{00590\ \ \ taskHumedad.Start();}
+\DoxyCodeLine{00591\ \ \ taskLuz.Start();}
+\DoxyCodeLine{00592\ \ \ taskHall.Start();}
+\DoxyCodeLine{00593\ \ \ taskIRSensor.Start();\ \textcolor{comment}{//\ Iniciar\ la\ tarea\ del\ sensor\ infrarrojo}}
+\DoxyCodeLine{00594\ \ \ mainMenu.change\_screen(\&scrn\_alarma);}
+\DoxyCodeLine{00595\ \ \ mainMenu.update();}
+\DoxyCodeLine{00596\ \}}
+\DoxyCodeLine{00607\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_af79dd95a9a9e4d8a176fd89de2b57445}{onLeavingAlarma}}()\ \{}
+\DoxyCodeLine{00608\ \ \ Serial.println(\textcolor{stringliteral}{"{}Leaving\ Alarma"{}});}
+\DoxyCodeLine{00609\ \ \ taskTemperatura.Stop();}
+\DoxyCodeLine{00610\ \ \ taskHumedad.Stop();}
+\DoxyCodeLine{00611\ \ \ taskLuz.Stop();}
+\DoxyCodeLine{00612\ \ \ taskHall.Stop();}
+\DoxyCodeLine{00613\ \ \ taskIRSensor.Stop();}
+\DoxyCodeLine{00614\ \ \ noTone(buzzer);}
+\DoxyCodeLine{00615\ \ \ \mbox{\hyperlink{controller_8h_ada51648078c9cc3658c1de6f7d749367}{setLED}}(0,\ 0,\ 0);}
+\DoxyCodeLine{00616\ \}}
+\DoxyCodeLine{00627\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_ada51648078c9cc3658c1de6f7d749367}{setLED}}(uint16\_t\ red,\ uint16\_t\ green,\ uint16\_t\ blue)\ \{}
+\DoxyCodeLine{00628\ \ \ digitalWrite(LED\_R,\ red);}
+\DoxyCodeLine{00629\ \ \ digitalWrite(LED\_G,\ green);}
+\DoxyCodeLine{00630\ \ \ digitalWrite(LED\_B,\ blue);}
+\DoxyCodeLine{00631\ \}}
+\DoxyCodeLine{00643\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{controller_8h_a8d719b39a39d61d8815281ecc4a57def}{hasElapsed}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ startTime,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ interval)\ \{}
+\DoxyCodeLine{00644\ \ \ \textcolor{keywordflow}{return}\ (millis()\ -\/\ startTime)\ >=\ interval;}
+\DoxyCodeLine{00645\ \}}
+\DoxyCodeLine{00646\ }
+\DoxyCodeLine{00647\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ TimeoutInicioAFK\ =\ 0;}
+\DoxyCodeLine{00648\ \textcolor{keywordtype}{bool}\ taskTimeoutInicioAFK\_Active\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00654\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_af8de14faad3d8faef888bd8ccc022e32}{startTimeoutInicioAFK}}()\ \{}
+\DoxyCodeLine{00655\ \ \ TimeoutInicioAFK\ =\ millis();}
+\DoxyCodeLine{00656\ \ \ taskTimeoutInicioAFK\_Active\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00657\ \}}
+\DoxyCodeLine{00663\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_a6a633372f449517f223b1b01bc693b04}{stopTimeoutInicioAFK}}()\ \{}
+\DoxyCodeLine{00664\ \ \ taskTimeoutInicioAFK\_Active\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00665\ \}}
+\DoxyCodeLine{00673\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{controller_8h_ab2f96fd17b41e589cac3f1e765610906}{updateTimeoutInicioAFK}}()\ \{}
+\DoxyCodeLine{00674\ \ \ \textcolor{keywordflow}{if}\ (taskTimeoutInicioAFK\_Active\ \&\&\ \mbox{\hyperlink{controller_8h_a8d719b39a39d61d8815281ecc4a57def}{hasElapsed}}(TimeoutInicioAFK,\ 2000))\ \{}
+\DoxyCodeLine{00675\ \ \ \ \ \mbox{\hyperlink{controller_8h_a72584877eb33caa4953ca9997ff64abc}{onSeguridadAFK}}();}
+\DoxyCodeLine{00676\ \ \ \ \ \mbox{\hyperlink{controller_8h_a6a633372f449517f223b1b01bc693b04}{stopTimeoutInicioAFK}}();}
+\DoxyCodeLine{00677\ \ \ \}}
+\DoxyCodeLine{00678\ \}}
+\DoxyCodeLine{00679\ }
+\DoxyCodeLine{00684\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CONTROLLER\_H}}
+
+\end{DoxyCode}

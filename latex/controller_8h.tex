@@ -1,0 +1,551 @@
+\doxysection{controller.\+h File Reference}
+\hypertarget{controller_8h}{}\label{controller_8h}\index{controller.h@{controller.h}}
+
+
+clase controlador  
+
+
+{\ttfamily \#include "{}model.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{controller_8h_a2c018b07f320da4371811bb498b61a82}{seguridad}} ()
+\begin{DoxyCompactList}\small\item\em Maneja el estado de seguridad. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a2a0e843767aeea4f433a28b9c54f573a}{menu}} ()
+\begin{DoxyCompactList}\small\item\em Maneja el menú de alertas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a867f6fabc108b3a4c6f0dade802e3a8a}{bloqueo}} ()
+\begin{DoxyCompactList}\small\item\em Maneja el estado de bloqueo del sistema. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_ad9ee76c563085f0c7551b4f5af30adf8}{alarma}} ()
+\begin{DoxyCompactList}\small\item\em Maneja el estado de alarma. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a310667cc50f973b5ea8f3dda40239571}{monitoreo\+Ambiental}} ()
+\begin{DoxyCompactList}\small\item\em Maneja el monitoreo ambiental. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a304e93b3b720a71793e50ef1da42d219}{monitoreo\+Eventos}} ()
+\begin{DoxyCompactList}\small\item\em Maneja el monitoreo de eventos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_ada51648078c9cc3658c1de6f7d749367}{set\+LED}} (uint16\+\_\+t red, uint16\+\_\+t green, uint16\+\_\+t blue)
+\begin{DoxyCompactList}\small\item\em Establece el estado de los LEDs RGB. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_ab2f96fd17b41e589cac3f1e765610906}{update\+Timeout\+Inicio\+AFK}} ()
+\begin{DoxyCompactList}\small\item\em Actualiza el estado del temporizador de seguridad AFK. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_af8de14faad3d8faef888bd8ccc022e32}{start\+Timeout\+Inicio\+AFK}} ()
+\begin{DoxyCompactList}\small\item\em Inicia el temporizador para el estado de seguridad AFK. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a6a633372f449517f223b1b01bc693b04}{stop\+Timeout\+Inicio\+AFK}} ()
+\begin{DoxyCompactList}\small\item\em Detiene el temporizador para el estado de seguridad AFK. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a6e155fe6a2f68ed4bd8f7ea40a93b6f9}{on\+Entering\+Inicio}} ()
+\begin{DoxyCompactList}\small\item\em Función que se llama al entrar en el estado de Inicio. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a033836d33bae76acdee1d677a405163f}{on\+Leaving\+Inicio}} ()
+\begin{DoxyCompactList}\small\item\em Función que se llama al salir del estado de Inicio. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a3f8bb0d9145bc37b66b219fb1bdaa1b0}{on\+Entering\+Alerta}} ()
+\begin{DoxyCompactList}\small\item\em Función que se llama al entrar en el estado de Alerta. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a531fdd05fe86e02fa3ab176e00c13ce0}{on\+Leaving\+Alerta}} ()
+\begin{DoxyCompactList}\small\item\em Función que se llama al salir del estado de Alerta. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a3372d8721feb4a132e3575740c56ea9e}{on\+Entering\+MAmbiental}} ()
+\begin{DoxyCompactList}\small\item\em Función que se llama al entrar en el estado de Monitoreo Ambiental. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a2d762e42fd4e7f65072195ab9f168865}{on\+Leaving\+MAmbiental}} ()
+\begin{DoxyCompactList}\small\item\em Función que se llama al salir del estado de Monitoreo Ambiental. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a7caad812e04d332fcd60d7af203a3e5a}{on\+Entering\+MEventos}} ()
+\begin{DoxyCompactList}\small\item\em Función que se llama al entrar en el estado de Monitoreo Eventos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_add1a1f5b6e958e270515142c3d1e96fc}{on\+Leaving\+MEventos}} ()
+\begin{DoxyCompactList}\small\item\em Función que se llama al entrar en el estado de Monitoreo Eventos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_afa7a2fb2ee7d671d10f90111a3a4b0da}{on\+Entering\+Bloqueado}} ()
+\begin{DoxyCompactList}\small\item\em Función que se llama al entrar en el estado de Bloqueado. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a8bd1ef7f23da8df4d83c9c93c6310ef1}{on\+Leaving\+Bloqueado}} ()
+\begin{DoxyCompactList}\small\item\em Función que se llama al salir del estado de Bloqueado. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a4dfa604d9188f1ac7ea0cbbf09c82f5c}{on\+Entering\+Alarma}} ()
+\begin{DoxyCompactList}\small\item\em Detiene todas las tareas relacionadas con la alarma. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_af79dd95a9a9e4d8a176fd89de2b57445}{on\+Leaving\+Alarma}} ()
+\begin{DoxyCompactList}\small\item\em Establece el estado de los LEDs RGB. \end{DoxyCompactList}\item 
+\Hypertarget{controller_8h_ac804e82630c5621944740df5a5f90e1e}\label{controller_8h_ac804e82630c5621944740df5a5f90e1e} 
+boolean {\bfseries compare\+And\+Reset\+Input} (Input input\+In)
+\item 
+\Hypertarget{controller_8h_a6ad74e9c6365e9d18e03b8b00ff4b61d}\label{controller_8h_a6ad74e9c6365e9d18e03b8b00ff4b61d} 
+State\+Machine {\bfseries state\+Machine} (6, 11)
+\item 
+\Hypertarget{controller_8h_a0f66d65ae208fa0a707755d77441dd5f}\label{controller_8h_a0f66d65ae208fa0a707755d77441dd5f} 
+void {\bfseries setup\+State\+Machine} ()
+\item 
+\Hypertarget{controller_8h_ae7a75cafc17b0c9abb50b0f70c96200e}\label{controller_8h_ae7a75cafc17b0c9abb50b0f70c96200e} 
+void {\bfseries blank\+Function} ()
+\item 
+\Hypertarget{controller_8h_acb956f4a8c977d3649baea12d19f14af}\label{controller_8h_acb956f4a8c977d3649baea12d19f14af} 
+Liquid\+Line {\bfseries status\+\_\+tmp\+\_\+m} (0, 0, "{}Luz\+:"{}, L)
+\item 
+\Hypertarget{controller_8h_a4f948e0f0a956765dfa51234e7549960}\label{controller_8h_a4f948e0f0a956765dfa51234e7549960} 
+Liquid\+Line {\bfseries status\+\_\+hum\+\_\+m} (8, 0, "{}Hum\+:"{}, H, "{}\%"{})
+\item 
+\Hypertarget{controller_8h_a99d29b9a99f9e4f0d6dcaa96fb118503}\label{controller_8h_a99d29b9a99f9e4f0d6dcaa96fb118503} 
+Liquid\+Line {\bfseries status\+\_\+luz\+\_\+m} (0, 1, "{}Temp\+:"{}, T, "{}C"{})
+\item 
+\Hypertarget{controller_8h_a9a406ab5124574a67e4764f0fdaf0b76}\label{controller_8h_a9a406ab5124574a67e4764f0fdaf0b76} 
+Liquid\+Screen {\bfseries scrn\+\_\+monitoreo\+\_\+ambiental} (status\+\_\+tmp\+\_\+m, status\+\_\+hum\+\_\+m, status\+\_\+luz\+\_\+m)
+\item 
+\Hypertarget{controller_8h_a5b3b0e9addb6edeabdc50e0c12ee3c6c}\label{controller_8h_a5b3b0e9addb6edeabdc50e0c12ee3c6c} 
+Liquid\+Line {\bfseries status\+\_\+hall\+\_\+m} (0, 0, "{}Hall\+:"{}, HALL)
+\item 
+\Hypertarget{controller_8h_af6a0c47944f38d460a93c383fe82b55b}\label{controller_8h_af6a0c47944f38d460a93c383fe82b55b} 
+Liquid\+Line {\bfseries status\+\_\+if\+\_\+m} (0, 1, "{}If\+: "{}, IR\+\_\+\+SENSOR)
+\item 
+\Hypertarget{controller_8h_a96269da7500b6d15161bb2f476c12c7e}\label{controller_8h_a96269da7500b6d15161bb2f476c12c7e} 
+Liquid\+Screen {\bfseries scrn\+\_\+monitoreo\+\_\+eventos} (status\+\_\+hall\+\_\+m, status\+\_\+if\+\_\+m)
+\item 
+\Hypertarget{controller_8h_a06ab17b17967c89a1552279534c60cab}\label{controller_8h_a06ab17b17967c89a1552279534c60cab} 
+Liquid\+Line {\bfseries line\+\_\+alarma} (0, 0, "{}Precaucion"{})
+\item 
+\Hypertarget{controller_8h_a6585baad9f26a1c34da77c4d11e99610}\label{controller_8h_a6585baad9f26a1c34da77c4d11e99610} 
+Liquid\+Line {\bfseries status\+\_\+alarma} (0, 1, message\+Alarma)
+\item 
+\Hypertarget{controller_8h_ab097415ad716968c315c135c0208c35b}\label{controller_8h_ab097415ad716968c315c135c0208c35b} 
+Liquid\+Screen {\bfseries scrn\+\_\+alarma} (line\+\_\+alarma, status\+\_\+alarma)
+\item 
+\Hypertarget{controller_8h_a32129e2997c25ce667c6b51cd4ce6be5}\label{controller_8h_a32129e2997c25ce667c6b51cd4ce6be5} 
+Liquid\+Line {\bfseries line\+\_\+alerta} (0, 0, "{}Precaucion"{})
+\item 
+\Hypertarget{controller_8h_ae1ea7ab3d503c45fd2bfbaa091df2a5d}\label{controller_8h_ae1ea7ab3d503c45fd2bfbaa091df2a5d} 
+Liquid\+Line {\bfseries status\+\_\+alerta} (0, 1, message\+Alerta)
+\item 
+\Hypertarget{controller_8h_ac6d62e92d8888cfcf1affc83f1ddf4f0}\label{controller_8h_ac6d62e92d8888cfcf1affc83f1ddf4f0} 
+Liquid\+Screen {\bfseries scrn\+\_\+alerta} (line\+\_\+alerta, status\+\_\+alerta)
+\item 
+\Hypertarget{controller_8h_a9da5673cc92c9e5ca2651082044b071a}\label{controller_8h_a9da5673cc92c9e5ca2651082044b071a} 
+Liquid\+Menu {\bfseries main\+Menu} (lcd)
+\item 
+void \mbox{\hyperlink{controller_8h_a4c8aff720db898c3dc82feb6481067c5}{setup\+Liquid\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Configura el menú de la pantalla LCD. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a5f7357072c717da529f2fd7084cc3dd0}{control\+Temperatura}} ()
+\begin{DoxyCompactList}\small\item\em Controla la temperatura y verifica si excede el límite superior. \end{DoxyCompactList}\item 
+\Hypertarget{controller_8h_a9c3ea79d8cc85be8af63717123d71143}\label{controller_8h_a9c3ea79d8cc85be8af63717123d71143} 
+void {\bfseries control\+Humedad} ()
+\begin{DoxyCompactList}\small\item\em Controla la humedad y la actualiza. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a959ddecdcd9553e1d28618ad7d9e3312}{control\+Luz}} ()
+\begin{DoxyCompactList}\small\item\em Controla la luz y verifica si excede el límite superior. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a9cd0f9ab2a6d5b3bd06d6140aa829a1d}{control\+Hall}} ()
+\begin{DoxyCompactList}\small\item\em Controla el sensor Hall y verifica si se detecta un imán. \end{DoxyCompactList}\item 
+\Hypertarget{controller_8h_abe15eac035ac63c45b2cc5e4894703f9}\label{controller_8h_abe15eac035ac63c45b2cc5e4894703f9} 
+void {\bfseries control\+IRSensor} ()
+\item 
+void \mbox{\hyperlink{controller_8h_a72584877eb33caa4953ca9997ff64abc}{on\+Seguridad\+AFK}} ()
+\begin{DoxyCompactList}\small\item\em Función que se llama al activar el estado de seguridad AFK (Away From Keyboard). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_ad862998466057175c32fa0007c760390}{input\+Timeout}} ()
+\begin{DoxyCompactList}\small\item\em Función que se llama cuando se agota el tiempo de entrada. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_add92fe5f33c4d60f4d096e30d98efa4b}{on\+Update\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Actualiza el menú en la pantalla LCD. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_abb1e84c09dc1f763e7b62317c37d8fa4}{alert\+Alarm}} ()
+\begin{DoxyCompactList}\small\item\em Controla el sensor infrarrojo y verifica si se detecta movimiento. \end{DoxyCompactList}\item 
+\Hypertarget{controller_8h_a90fe434f46d3b47c83fca8a2586394f2}\label{controller_8h_a90fe434f46d3b47c83fca8a2586394f2} 
+void {\bfseries come\+Back} ()
+\item 
+\Hypertarget{controller_8h_ab5f6fda433e3c3ce8ca6a5307f59ba9c}\label{controller_8h_ab5f6fda433e3c3ce8ca6a5307f59ba9c} 
+Async\+Task {\bfseries task\+Update\+Menu} (1000, true, \mbox{\hyperlink{controller_8h_add92fe5f33c4d60f4d096e30d98efa4b}{on\+Update\+Menu}})
+\item 
+\Hypertarget{controller_8h_a17f815657b02e1ac9243e4f53b8d930c}\label{controller_8h_a17f815657b02e1ac9243e4f53b8d930c} 
+Async\+Task {\bfseries task\+Temperatura} (1000, true, \mbox{\hyperlink{controller_8h_a5f7357072c717da529f2fd7084cc3dd0}{control\+Temperatura}})
+\item 
+\Hypertarget{controller_8h_aecab95e90892492eea20992a1c8821e4}\label{controller_8h_aecab95e90892492eea20992a1c8821e4} 
+Async\+Task {\bfseries task\+Humedad} (1000, true, \mbox{\hyperlink{controller_8h_a9c3ea79d8cc85be8af63717123d71143}{control\+Humedad}})
+\item 
+\Hypertarget{controller_8h_a62bac52ebe12e12c1ffdbed4eb65d94e}\label{controller_8h_a62bac52ebe12e12c1ffdbed4eb65d94e} 
+Async\+Task {\bfseries task\+Luz} (500, true, \mbox{\hyperlink{controller_8h_a959ddecdcd9553e1d28618ad7d9e3312}{control\+Luz}})
+\item 
+\Hypertarget{controller_8h_a2724814def5fe6a2701eba8eba87f8e3}\label{controller_8h_a2724814def5fe6a2701eba8eba87f8e3} 
+Async\+Task {\bfseries task\+Hall} (500, true, \mbox{\hyperlink{controller_8h_a9cd0f9ab2a6d5b3bd06d6140aa829a1d}{control\+Hall}})
+\item 
+\Hypertarget{controller_8h_a30713f14c959b04c76ab648941a82847}\label{controller_8h_a30713f14c959b04c76ab648941a82847} 
+Async\+Task {\bfseries task\+IRSensor} (500, true, control\+IRSensor)
+\item 
+\Hypertarget{controller_8h_a435c035b00b962afb2905c72bad043f0}\label{controller_8h_a435c035b00b962afb2905c72bad043f0} 
+Async\+Task {\bfseries task\+Timeout\+Eventos} (3000, false, \mbox{\hyperlink{controller_8h_ad862998466057175c32fa0007c760390}{input\+Timeout}})
+\item 
+\Hypertarget{controller_8h_ace77b6b08ea40f2bf828fb56324e098d}\label{controller_8h_ace77b6b08ea40f2bf828fb56324e098d} 
+Async\+Task {\bfseries task\+Timeout\+Ambiental} (7000, false, \mbox{\hyperlink{controller_8h_ad862998466057175c32fa0007c760390}{input\+Timeout}})
+\item 
+\Hypertarget{controller_8h_a695932bfbe50fdd29a602c479e37e397}\label{controller_8h_a695932bfbe50fdd29a602c479e37e397} 
+Async\+Task {\bfseries task\+Timeout\+Alarma} (4000, false, \mbox{\hyperlink{controller_8h_ad862998466057175c32fa0007c760390}{input\+Timeout}})
+\item 
+\Hypertarget{controller_8h_af1857b6c4701ea268b3be247fd17f911}\label{controller_8h_af1857b6c4701ea268b3be247fd17f911} 
+Async\+Task {\bfseries task\+Timeout\+Alerta} (3000, false, \mbox{\hyperlink{controller_8h_ad862998466057175c32fa0007c760390}{input\+Timeout}})
+\item 
+\Hypertarget{controller_8h_ac1b646926ed7d3bae92b6e50f5e1ccac}\label{controller_8h_ac1b646926ed7d3bae92b6e50f5e1ccac} 
+Async\+Task {\bfseries task\+Timeout\+Inicio\+AFK} (2000, false, \mbox{\hyperlink{controller_8h_a72584877eb33caa4953ca9997ff64abc}{on\+Seguridad\+AFK}})
+\item 
+bool \mbox{\hyperlink{controller_8h_a8d719b39a39d61d8815281ecc4a57def}{has\+Elapsed}} (unsigned long start\+Time, unsigned long interval)
+\begin{DoxyCompactList}\small\item\em Verifica si ha transcurrido un intervalo de tiempo desde un momento dado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{controller_8h_a6a3f2c6a881d8c04ad91503e7b54124b}\label{controller_8h_a6a3f2c6a881d8c04ad91503e7b54124b} 
+Liquid\+Screen {\bfseries scrn\+\_\+\+Alerta}
+\item 
+bool \mbox{\hyperlink{controller_8h_a5b909254a0e0b643b48641dc71055460}{motion\+Detected}} = false
+\begin{DoxyCompactList}\small\item\em Controla el sensor infrarrojo y verifica si se detecta movimiento. \end{DoxyCompactList}\item 
+\Hypertarget{controller_8h_a3d2079785d4f0052f622a64ff15f54e5}\label{controller_8h_a3d2079785d4f0052f622a64ff15f54e5} 
+unsigned long {\bfseries Timeout\+Inicio\+AFK} = 0
+\item 
+\Hypertarget{controller_8h_a4b12e30627a3c127c99094d9d28bbece}\label{controller_8h_a4b12e30627a3c127c99094d9d28bbece} 
+bool {\bfseries task\+Timeout\+Inicio\+AFK\+\_\+\+Active} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+clase controlador 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{controller_8h_ad9ee76c563085f0c7551b4f5af30adf8}\index{controller.h@{controller.h}!alarma@{alarma}}
+\index{alarma@{alarma}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{alarma()}{alarma()}}
+{\footnotesize\ttfamily \label{controller_8h_ad9ee76c563085f0c7551b4f5af30adf8} 
+void alarma (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Maneja el estado de alarma. 
+
+Esta función se ejecuta cuando el sistema está en estado de alarma y gestiona las tareas de monitoreo. \Hypertarget{controller_8h_abb1e84c09dc1f763e7b62317c37d8fa4}\index{controller.h@{controller.h}!alertAlarm@{alertAlarm}}
+\index{alertAlarm@{alertAlarm}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{alertAlarm()}{alertAlarm()}}
+{\footnotesize\ttfamily \label{controller_8h_abb1e84c09dc1f763e7b62317c37d8fa4} 
+void alert\+Alarm (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Controla el sensor infrarrojo y verifica si se detecta movimiento. 
+
+Si se detecta movimiento, se activa la alarma y se enciende un LED azul. \Hypertarget{controller_8h_a867f6fabc108b3a4c6f0dade802e3a8a}\index{controller.h@{controller.h}!bloqueo@{bloqueo}}
+\index{bloqueo@{bloqueo}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{bloqueo()}{bloqueo()}}
+{\footnotesize\ttfamily \label{controller_8h_a867f6fabc108b3a4c6f0dade802e3a8a} 
+void bloqueo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Maneja el estado de bloqueo del sistema. 
+
+Esta función se ejecuta cuando el sistema está bloqueado al intoducir la clave 3 veces de forma incorrecta y muestra un mensaje en el LCD. \Hypertarget{controller_8h_a9cd0f9ab2a6d5b3bd06d6140aa829a1d}\index{controller.h@{controller.h}!controlHall@{controlHall}}
+\index{controlHall@{controlHall}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{controlHall()}{controlHall()}}
+{\footnotesize\ttfamily \label{controller_8h_a9cd0f9ab2a6d5b3bd06d6140aa829a1d} 
+void control\+Hall (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Controla el sensor Hall y verifica si se detecta un imán. 
+
+Si se detecta un imán, se activa la alarma y se enciende un LED azul. \Hypertarget{controller_8h_a959ddecdcd9553e1d28618ad7d9e3312}\index{controller.h@{controller.h}!controlLuz@{controlLuz}}
+\index{controlLuz@{controlLuz}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{controlLuz()}{controlLuz()}}
+{\footnotesize\ttfamily \label{controller_8h_a959ddecdcd9553e1d28618ad7d9e3312} 
+void control\+Luz (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Controla la luz y verifica si excede el límite superior. 
+
+Si la luz es mayor que el límite superior, se activa la alarma. \Hypertarget{controller_8h_a5f7357072c717da529f2fd7084cc3dd0}\index{controller.h@{controller.h}!controlTemperatura@{controlTemperatura}}
+\index{controlTemperatura@{controlTemperatura}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{controlTemperatura()}{controlTemperatura()}}
+{\footnotesize\ttfamily \label{controller_8h_a5f7357072c717da529f2fd7084cc3dd0} 
+void control\+Temperatura (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Controla la temperatura y verifica si excede el límite superior. 
+
+Si la temperatura es mayor que el límite superior, se activa la alarma. \Hypertarget{controller_8h_a8d719b39a39d61d8815281ecc4a57def}\index{controller.h@{controller.h}!hasElapsed@{hasElapsed}}
+\index{hasElapsed@{hasElapsed}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{hasElapsed()}{hasElapsed()}}
+{\footnotesize\ttfamily \label{controller_8h_a8d719b39a39d61d8815281ecc4a57def} 
+bool has\+Elapsed (\begin{DoxyParamCaption}\item[{unsigned long}]{start\+Time}{, }\item[{unsigned long}]{interval}{}\end{DoxyParamCaption})}
+
+
+
+Verifica si ha transcurrido un intervalo de tiempo desde un momento dado. 
+
+Esta función compara el tiempo actual con un tiempo de inicio y un intervalo especificado para determinar si el intervalo ha sido superado.
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Time} & Tiempo de inicio en milisegundos. \\
+\hline
+{\em interval} & Intervalo de tiempo en milisegundos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true Si ha transcurrido el intervalo. 
+
+false Si no ha transcurrido el intervalo. 
+\end{DoxyReturn}
+\Hypertarget{controller_8h_ad862998466057175c32fa0007c760390}\index{controller.h@{controller.h}!inputTimeout@{inputTimeout}}
+\index{inputTimeout@{inputTimeout}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{inputTimeout()}{inputTimeout()}}
+{\footnotesize\ttfamily \label{controller_8h_ad862998466057175c32fa0007c760390} 
+void input\+Timeout (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Función que se llama cuando se agota el tiempo de entrada. 
+
+Esta función establece la entrada como Timeout para la máquina de estados. \Hypertarget{controller_8h_a2a0e843767aeea4f433a28b9c54f573a}\index{controller.h@{controller.h}!menu@{menu}}
+\index{menu@{menu}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{menu()}{menu()}}
+{\footnotesize\ttfamily \label{controller_8h_a2a0e843767aeea4f433a28b9c54f573a} 
+void menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Maneja el menú de alertas. 
+
+Esta función se ejecuta cuando el sistema está en estado de alerta y gestiona las tareas de monitoreo. \Hypertarget{controller_8h_a310667cc50f973b5ea8f3dda40239571}\index{controller.h@{controller.h}!monitoreoAmbiental@{monitoreoAmbiental}}
+\index{monitoreoAmbiental@{monitoreoAmbiental}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{monitoreoAmbiental()}{monitoreoAmbiental()}}
+{\footnotesize\ttfamily \label{controller_8h_a310667cc50f973b5ea8f3dda40239571} 
+void monitoreo\+Ambiental (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Maneja el monitoreo ambiental. 
+
+Esta función se ejecuta en el estado de monitoreo ambiental y gestiona las tareas de monitoreo. \Hypertarget{controller_8h_a304e93b3b720a71793e50ef1da42d219}\index{controller.h@{controller.h}!monitoreoEventos@{monitoreoEventos}}
+\index{monitoreoEventos@{monitoreoEventos}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{monitoreoEventos()}{monitoreoEventos()}}
+{\footnotesize\ttfamily \label{controller_8h_a304e93b3b720a71793e50ef1da42d219} 
+void monitoreo\+Eventos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Maneja el monitoreo de eventos. 
+
+Esta función se ejecuta en el estado de monitoreo de eventos y gestiona las tareas de monitoreo. \Hypertarget{controller_8h_a4dfa604d9188f1ac7ea0cbbf09c82f5c}\index{controller.h@{controller.h}!onEnteringAlarma@{onEnteringAlarma}}
+\index{onEnteringAlarma@{onEnteringAlarma}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{onEnteringAlarma()}{onEnteringAlarma()}}
+{\footnotesize\ttfamily \label{controller_8h_a4dfa604d9188f1ac7ea0cbbf09c82f5c} 
+void on\+Entering\+Alarma (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Detiene todas las tareas relacionadas con la alarma. 
+
+Esta función se llama al salir del estado de alarma. Detiene las tareas de monitoreo de temperatura, humedad, luz, hall y sensor infrarrojo, apaga el buzzer y apaga todos los LEDs. \Hypertarget{controller_8h_a3f8bb0d9145bc37b66b219fb1bdaa1b0}\index{controller.h@{controller.h}!onEnteringAlerta@{onEnteringAlerta}}
+\index{onEnteringAlerta@{onEnteringAlerta}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{onEnteringAlerta()}{onEnteringAlerta()}}
+{\footnotesize\ttfamily \label{controller_8h_a3f8bb0d9145bc37b66b219fb1bdaa1b0} 
+void on\+Entering\+Alerta (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Función que se llama al entrar en el estado de Alerta. 
+
+Esta función activa las tareas de monitoreo y muestra el mensaje de alerta en el LCD. \Hypertarget{controller_8h_afa7a2fb2ee7d671d10f90111a3a4b0da}\index{controller.h@{controller.h}!onEnteringBloqueado@{onEnteringBloqueado}}
+\index{onEnteringBloqueado@{onEnteringBloqueado}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{onEnteringBloqueado()}{onEnteringBloqueado()}}
+{\footnotesize\ttfamily \label{controller_8h_afa7a2fb2ee7d671d10f90111a3a4b0da} 
+void on\+Entering\+Bloqueado (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Función que se llama al entrar en el estado de Bloqueado. 
+
+Esta función se ejecuta cuando el sistema está bloqueado. \Hypertarget{controller_8h_a6e155fe6a2f68ed4bd8f7ea40a93b6f9}\index{controller.h@{controller.h}!onEnteringInicio@{onEnteringInicio}}
+\index{onEnteringInicio@{onEnteringInicio}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{onEnteringInicio()}{onEnteringInicio()}}
+{\footnotesize\ttfamily \label{controller_8h_a6e155fe6a2f68ed4bd8f7ea40a93b6f9} 
+void on\+Entering\+Inicio (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Función que se llama al entrar en el estado de Inicio. 
+
+Esta función inicializa las variables y muestra el mensaje de entrada en el LCD. \Hypertarget{controller_8h_a3372d8721feb4a132e3575740c56ea9e}\index{controller.h@{controller.h}!onEnteringMAmbiental@{onEnteringMAmbiental}}
+\index{onEnteringMAmbiental@{onEnteringMAmbiental}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{onEnteringMAmbiental()}{onEnteringMAmbiental()}}
+{\footnotesize\ttfamily \label{controller_8h_a3372d8721feb4a132e3575740c56ea9e} 
+void on\+Entering\+MAmbiental (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Función que se llama al entrar en el estado de Monitoreo Ambiental. 
+
+Esta función activa las tareas de monitoreo y muestra la pantalla de monitoreo ambiental. \Hypertarget{controller_8h_a7caad812e04d332fcd60d7af203a3e5a}\index{controller.h@{controller.h}!onEnteringMEventos@{onEnteringMEventos}}
+\index{onEnteringMEventos@{onEnteringMEventos}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{onEnteringMEventos()}{onEnteringMEventos()}}
+{\footnotesize\ttfamily \label{controller_8h_a7caad812e04d332fcd60d7af203a3e5a} 
+void on\+Entering\+MEventos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Función que se llama al entrar en el estado de Monitoreo Eventos. 
+
+Esta función activa las tareas de monitoreo y muestra la pantalla de monitoreo de eventos. \Hypertarget{controller_8h_af79dd95a9a9e4d8a176fd89de2b57445}\index{controller.h@{controller.h}!onLeavingAlarma@{onLeavingAlarma}}
+\index{onLeavingAlarma@{onLeavingAlarma}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{onLeavingAlarma()}{onLeavingAlarma()}}
+{\footnotesize\ttfamily \label{controller_8h_af79dd95a9a9e4d8a176fd89de2b57445} 
+void on\+Leaving\+Alarma (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Establece el estado de los LEDs RGB. 
+
+Esta función recibe valores para los componentes rojo, verde y azul del LED y los configura en los pines correspondientes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em red} & Valor para el componente rojo (0-\/255). \\
+\hline
+{\em green} & Valor para el componente verde (0-\/255). \\
+\hline
+{\em blue} & Valor para el componente azul (0-\/255). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{controller_8h_a531fdd05fe86e02fa3ab176e00c13ce0}\index{controller.h@{controller.h}!onLeavingAlerta@{onLeavingAlerta}}
+\index{onLeavingAlerta@{onLeavingAlerta}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{onLeavingAlerta()}{onLeavingAlerta()}}
+{\footnotesize\ttfamily \label{controller_8h_a531fdd05fe86e02fa3ab176e00c13ce0} 
+void on\+Leaving\+Alerta (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Función que se llama al salir del estado de Alerta. 
+
+Esta función detiene las tareas de monitoreo y apaga el buzzer. \Hypertarget{controller_8h_a8bd1ef7f23da8df4d83c9c93c6310ef1}\index{controller.h@{controller.h}!onLeavingBloqueado@{onLeavingBloqueado}}
+\index{onLeavingBloqueado@{onLeavingBloqueado}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{onLeavingBloqueado()}{onLeavingBloqueado()}}
+{\footnotesize\ttfamily \label{controller_8h_a8bd1ef7f23da8df4d83c9c93c6310ef1} 
+void on\+Leaving\+Bloqueado (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Función que se llama al salir del estado de Bloqueado. 
+
+Esta función apaga los LEDs al salir del estado de bloqueo. \Hypertarget{controller_8h_a033836d33bae76acdee1d677a405163f}\index{controller.h@{controller.h}!onLeavingInicio@{onLeavingInicio}}
+\index{onLeavingInicio@{onLeavingInicio}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{onLeavingInicio()}{onLeavingInicio()}}
+{\footnotesize\ttfamily \label{controller_8h_a033836d33bae76acdee1d677a405163f} 
+void on\+Leaving\+Inicio (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Función que se llama al salir del estado de Inicio. 
+
+Esta función detiene el temporizador de seguridad AFK. \Hypertarget{controller_8h_a2d762e42fd4e7f65072195ab9f168865}\index{controller.h@{controller.h}!onLeavingMAmbiental@{onLeavingMAmbiental}}
+\index{onLeavingMAmbiental@{onLeavingMAmbiental}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{onLeavingMAmbiental()}{onLeavingMAmbiental()}}
+{\footnotesize\ttfamily \label{controller_8h_a2d762e42fd4e7f65072195ab9f168865} 
+void on\+Leaving\+MAmbiental (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Función que se llama al salir del estado de Monitoreo Ambiental. 
+
+Esta función detiene las tareas de monitoreo. \Hypertarget{controller_8h_add1a1f5b6e958e270515142c3d1e96fc}\index{controller.h@{controller.h}!onLeavingMEventos@{onLeavingMEventos}}
+\index{onLeavingMEventos@{onLeavingMEventos}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{onLeavingMEventos()}{onLeavingMEventos()}}
+{\footnotesize\ttfamily \label{controller_8h_add1a1f5b6e958e270515142c3d1e96fc} 
+void on\+Leaving\+MEventos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Función que se llama al entrar en el estado de Monitoreo Eventos. 
+
+Esta función activa las tareas de monitoreo y muestra la pantalla de monitoreo de eventos. \Hypertarget{controller_8h_a72584877eb33caa4953ca9997ff64abc}\index{controller.h@{controller.h}!onSeguridadAFK@{onSeguridadAFK}}
+\index{onSeguridadAFK@{onSeguridadAFK}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{onSeguridadAFK()}{onSeguridadAFK()}}
+{\footnotesize\ttfamily \label{controller_8h_a72584877eb33caa4953ca9997ff64abc} 
+void on\+Seguridad\+AFK (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Función que se llama al activar el estado de seguridad AFK (Away From Keyboard). 
+
+Esta función se encarga de realizar acciones específicas cuando el sistema detecta que no hay actividad durante un periodo de tiempo determinado. Puede incluir la activación de alarmas o notificaciones. En este caso, se activa un tono en el buzzer y se enciende un LED de color rojo para indicar el estado de alerta. \Hypertarget{controller_8h_add92fe5f33c4d60f4d096e30d98efa4b}\index{controller.h@{controller.h}!onUpdateMenu@{onUpdateMenu}}
+\index{onUpdateMenu@{onUpdateMenu}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{onUpdateMenu()}{onUpdateMenu()}}
+{\footnotesize\ttfamily \label{controller_8h_add92fe5f33c4d60f4d096e30d98efa4b} 
+void on\+Update\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Actualiza el menú en la pantalla LCD. 
+
+Esta función se llama periódicamente para actualizar la visualización del menú. \Hypertarget{controller_8h_a2c018b07f320da4371811bb498b61a82}\index{controller.h@{controller.h}!seguridad@{seguridad}}
+\index{seguridad@{seguridad}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{seguridad()}{seguridad()}}
+{\footnotesize\ttfamily \label{controller_8h_a2c018b07f320da4371811bb498b61a82} 
+void seguridad (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Maneja el estado de seguridad. 
+
+Esta función permite la entrada de la contraseña y gestiona el acceso al sistema. \Hypertarget{controller_8h_ada51648078c9cc3658c1de6f7d749367}\index{controller.h@{controller.h}!setLED@{setLED}}
+\index{setLED@{setLED}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{setLED()}{setLED()}}
+{\footnotesize\ttfamily \label{controller_8h_ada51648078c9cc3658c1de6f7d749367} 
+void set\+LED (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{red}{, }\item[{uint16\+\_\+t}]{green}{, }\item[{uint16\+\_\+t}]{blue}{}\end{DoxyParamCaption})}
+
+
+
+Establece el estado de los LEDs RGB. 
+
+Esta función recibe valores para los componentes rojo, verde y azul del LED y los configura en los pines correspondientes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em red} & Valor para el componente rojo (0-\/255). \\
+\hline
+{\em green} & Valor para el componente verde (0-\/255). \\
+\hline
+{\em blue} & Valor para el componente azul (0-\/255). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{controller_8h_a4c8aff720db898c3dc82feb6481067c5}\index{controller.h@{controller.h}!setupLiquidMenu@{setupLiquidMenu}}
+\index{setupLiquidMenu@{setupLiquidMenu}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{setupLiquidMenu()}{setupLiquidMenu()}}
+{\footnotesize\ttfamily \label{controller_8h_a4c8aff720db898c3dc82feb6481067c5} 
+void setup\+Liquid\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Configura el menú de la pantalla LCD. 
+
+Esta función agrega las diferentes pantallas al menú principal. \Hypertarget{controller_8h_af8de14faad3d8faef888bd8ccc022e32}\index{controller.h@{controller.h}!startTimeoutInicioAFK@{startTimeoutInicioAFK}}
+\index{startTimeoutInicioAFK@{startTimeoutInicioAFK}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{startTimeoutInicioAFK()}{startTimeoutInicioAFK()}}
+{\footnotesize\ttfamily \label{controller_8h_af8de14faad3d8faef888bd8ccc022e32} 
+void start\+Timeout\+Inicio\+AFK (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Inicia el temporizador para el estado de seguridad AFK. 
+
+Esta función almacena el tiempo actual y activa la bandera que indica que el temporizador está activo. \Hypertarget{controller_8h_a6a633372f449517f223b1b01bc693b04}\index{controller.h@{controller.h}!stopTimeoutInicioAFK@{stopTimeoutInicioAFK}}
+\index{stopTimeoutInicioAFK@{stopTimeoutInicioAFK}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{stopTimeoutInicioAFK()}{stopTimeoutInicioAFK()}}
+{\footnotesize\ttfamily \label{controller_8h_a6a633372f449517f223b1b01bc693b04} 
+void stop\+Timeout\+Inicio\+AFK (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Detiene el temporizador para el estado de seguridad AFK. 
+
+Esta función desactiva la bandera que indica que el temporizador está activo. \Hypertarget{controller_8h_ab2f96fd17b41e589cac3f1e765610906}\index{controller.h@{controller.h}!updateTimeoutInicioAFK@{updateTimeoutInicioAFK}}
+\index{updateTimeoutInicioAFK@{updateTimeoutInicioAFK}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{updateTimeoutInicioAFK()}{updateTimeoutInicioAFK()}}
+{\footnotesize\ttfamily \label{controller_8h_ab2f96fd17b41e589cac3f1e765610906} 
+void update\+Timeout\+Inicio\+AFK (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Actualiza el estado del temporizador de seguridad AFK. 
+
+Esta función verifica si el temporizador está activo y si ha transcurrido el tiempo especificado (2000 ms en este caso). Si se cumple la condición, se llama a la función \doxylink{controller_8h_a72584877eb33caa4953ca9997ff64abc}{on\+Seguridad\+AFK()} y se detiene el temporizador. 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{controller_8h_a5b909254a0e0b643b48641dc71055460}\index{controller.h@{controller.h}!motionDetected@{motionDetected}}
+\index{motionDetected@{motionDetected}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{motionDetected}{motionDetected}}
+{\footnotesize\ttfamily \label{controller_8h_a5b909254a0e0b643b48641dc71055460} 
+bool motion\+Detected = false}
+
+
+
+Controla el sensor infrarrojo y verifica si se detecta movimiento. 
+
+Si se detecta movimiento, se activa la alarma y se enciende un LED azul. 

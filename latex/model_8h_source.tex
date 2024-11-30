@@ -1,0 +1,132 @@
+\doxysection{model.\+h}
+\hypertarget{model_8h_source}{}\label{model_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Model.h}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ MODEL\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ MODEL\_H}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <LiquidMenu.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}melody.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <LiquidCrystal.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Keypad.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <DHT.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}StateMachineLib.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}AsyncTaskLib.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <LiquidMenu\_config.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ SENSOR\_PIN\ 6\ }\textcolor{comment}{//\ Pin\ del\ sensor\ infrarrojo}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ DHT\_TYPE\ DHT22}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ DHT\_PIN\ 39}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ PHOTOCELL\_PIN\ A0}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ BUZZER\_PIN\ 7}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ HALL\_PIN\ 53}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ LCD\_RS\ 12}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ LCD\_EN\ 11}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ LCD\_D4\ 5}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ LCD\_D5\ 4}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ LCD\_D6\ 3}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ LCD\_D7\ 2}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ LED\_R\ 8}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ LED\_G\ 9}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ LED\_B\ 10}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ **********************\ VARIABLES\ ******************************}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ PASSWORD\_ATTEMPTS\ 3}}
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{int}\ alert\_attempts\ =\ 3;}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ DEF\_TMP\_HIGH\ 40}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ DEF\_TMP\_LOW\ 10}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ DEF\_LUZ\_HIGH\ 650}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ DEF\_LUZ\_LOW\ 20}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ \#define\ DEF\_HALL\ 600}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ DEF\_HALL\ 0}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ DEF\_IR\ 0}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ Variables\ para\ la\ contraseña}}
+\DoxyCodeLine{00043\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structbuffer}{buffer}}\ \{}
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ size\ =\ 16;}
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordtype}{char}\ str[size\ +\ 1];}
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordtype}{byte}\ len\ =\ 0;}
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordtype}{void}\ push(\textcolor{keywordtype}{char}\ chr)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (len\ ==\ size)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00049\ \ \ \ \ str[len++]\ =\ chr;}
+\DoxyCodeLine{00050\ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \textcolor{keywordtype}{void}\ clear()\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ this-\/>len;\ i++)\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ str[i]\ =\ 0;}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ len\ =\ 0;}
+\DoxyCodeLine{00056\ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \textcolor{keywordtype}{bool}\ isFull()\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{return}\ len\ ==\ size;}
+\DoxyCodeLine{00059\ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \textcolor{keywordtype}{char}\ lastCharacter()\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ len\ ==\ 0\ ?\ 0\ :\ str[len\ -\/\ 1];}
+\DoxyCodeLine{00062\ \ \ \}}
+\DoxyCodeLine{00063\ \}\ keypadBuffer;}
+\DoxyCodeLine{00064\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{byte}\ password\_len\ =\ 4;}
+\DoxyCodeLine{00065\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ password[password\_len\ +\ 1]\ =\ \textcolor{stringliteral}{"{}4444"{}};}
+\DoxyCodeLine{00066\ \textcolor{keywordtype}{byte}\ password\_attempts;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ Variables\ de\ la\ configuaracion\ de\ los\ eventos}}
+\DoxyCodeLine{00069\ \textcolor{keywordtype}{float}\ tmp\_high\ =\ DEF\_TMP\_HIGH;}
+\DoxyCodeLine{00070\ \textcolor{keywordtype}{float}\ tmp\_low\ =\ DEF\_TMP\_LOW;}
+\DoxyCodeLine{00071\ int16\_t\ luz\_high\ =\ DEF\_LUZ\_HIGH;}
+\DoxyCodeLine{00072\ int16\_t\ luz\_low\ =\ DEF\_LUZ\_LOW;}
+\DoxyCodeLine{00073\ int16\_t\ hall\_high\ =\ DEF\_HALL;}
+\DoxyCodeLine{00074\ int16\_t\ ir\_low\ =\ DEF\_IR;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{comment}{//\ Variables\ de\ Monitoreo}}
+\DoxyCodeLine{00077\ \textcolor{keywordtype}{float}\ T\ =\ 0;\ \textcolor{comment}{/*\ !<\ Temperatura\ */}}
+\DoxyCodeLine{00078\ int16\_t\ H\ =\ 0;\ \textcolor{comment}{/*\ !<\ Humedad\ */}}
+\DoxyCodeLine{00079\ int16\_t\ L\ =\ 0;\ \textcolor{comment}{/*\ !<\ Luz\ */}}
+\DoxyCodeLine{00080\ int16\_t\ HALL\ =\ 0;\ \textcolor{comment}{/*\ !<\ Hall\ */}}
+\DoxyCodeLine{00081\ int16\_t\ IR\_SENSOR\ =\ 0;\ \textcolor{comment}{/*\ !<\ Sensor\ Infrarrojo\ */}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keywordtype}{char}\ messageAlarma[17];}
+\DoxyCodeLine{00085\ \textcolor{keywordtype}{char}\ messageAlerta[17];}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{comment}{/*\ CONFIGURACION\ LCD\ */}}
+\DoxyCodeLine{00088\ LiquidCrystal\ lcd(LCD\_RS,\ LCD\_EN,\ LCD\_D4,\ LCD\_D5,\ LCD\_D6,\ LCD\_D7);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{comment}{/*\ CONFIGURACION\ DHT\ */}}
+\DoxyCodeLine{00091\ DHT\ dht(DHT\_PIN,\ DHT\_TYPE);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{comment}{/*\ CONFIGURACION\ KEYPAD\ */}}
+\DoxyCodeLine{00094\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{byte}\ KEYPAD\_ROWS\ =\ 4;}
+\DoxyCodeLine{00095\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{byte}\ KEYPAD\_COLS\ =\ 4;}
+\DoxyCodeLine{00096\ \textcolor{keywordtype}{char}\ padKeys[KEYPAD\_ROWS][KEYPAD\_COLS]\ =\ \{}
+\DoxyCodeLine{00097\ \ \ \{\textcolor{charliteral}{'1'},\ \textcolor{charliteral}{'2'},\ \textcolor{charliteral}{'3'},\ \textcolor{charliteral}{'A'}\},}
+\DoxyCodeLine{00098\ \ \ \{\textcolor{charliteral}{'4'},\ \textcolor{charliteral}{'5'},\ \textcolor{charliteral}{'6'},\ \textcolor{charliteral}{'B'}\},}
+\DoxyCodeLine{00099\ \ \ \{\textcolor{charliteral}{'7'},\ \textcolor{charliteral}{'8'},\ \textcolor{charliteral}{'9'},\ \textcolor{charliteral}{'C'}\},}
+\DoxyCodeLine{00100\ \ \ \{\textcolor{charliteral}{'*'},\ \textcolor{charliteral}{'0'},\ \textcolor{charliteral}{'\#'},\ \textcolor{charliteral}{'D'}\}}
+\DoxyCodeLine{00101\ \};}
+\DoxyCodeLine{00102\ \textcolor{keywordtype}{byte}\ keypadRowPins[KEYPAD\_ROWS]\ =\ \{22,\ 24,\ 26,\ 28\};\ \textcolor{comment}{//connect\ to\ the\ row\ pinouts\ of\ the\ keypad}}
+\DoxyCodeLine{00103\ \textcolor{keywordtype}{byte}\ keypadColPins[KEYPAD\_COLS]\ =\ \{30,\ 32,\ 34,\ 36\};\ \textcolor{comment}{//connect\ to\ the\ column\ pinouts\ of\ the\ keypad}}
+\DoxyCodeLine{00104\ Keypad\ customKeypad\ =\ Keypad(\ makeKeymap(padKeys),\ keypadRowPins,\ keypadColPins,\ KEYPAD\_ROWS,\ KEYPAD\_COLS);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{comment}{//\ Enums\ de\ la\ maquina\ de\ estados}}
+\DoxyCodeLine{00109\ \textcolor{keyword}{enum}\ State\ \{}
+\DoxyCodeLine{00110\ \ \ Inicio\ =\ 0,}
+\DoxyCodeLine{00111\ \ \ Alerta\ =\ 1,}
+\DoxyCodeLine{00112\ \ \ MonitoreoAmbiental\ =\ 2,}
+\DoxyCodeLine{00113\ \ \ Bloqueado\ =\ 3,}
+\DoxyCodeLine{00114\ \ \ MonitoreoEventos\ =\ 4,}
+\DoxyCodeLine{00115\ \ \ Alarma\ =\ 5,}
+\DoxyCodeLine{00116\ \};}
+\DoxyCodeLine{00117\ \textcolor{keyword}{enum}\ Input\ \{}
+\DoxyCodeLine{00118\ \ \ Unknown\ =\ 0,}
+\DoxyCodeLine{00119\ \ \ ClaveCorrecta\ =\ 2,}
+\DoxyCodeLine{00120\ \ \ Cambio\ =\ 1,}
+\DoxyCodeLine{00121\ \ \ BloqueoSistema\ =\ 3,}
+\DoxyCodeLine{00122\ \ \ Timeout\ =\ 4,}
+\DoxyCodeLine{00123\ \ \ Umbral\ =\ 5}
+\DoxyCodeLine{00124\ \};}
+\DoxyCodeLine{00125\ Input\ input\ =\ Unknown;}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MODEL\_H}}
+
+\end{DoxyCode}
